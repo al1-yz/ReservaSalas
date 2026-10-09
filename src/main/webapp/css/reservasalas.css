@@ -1,0 +1,1204 @@
+/*
+ * Estilos compartilhados do ReservaSalas (todas as paginas JSP).
+ * Carregado depois do Bootstrap 5.0.2: so sobrescreve e acrescenta.
+ */
+
+:root {
+    --ink: #14222d;
+    --muted: #72808a;
+    --canvas: #edf3f0;
+    --surface: #fbfdfb;
+    --line: #dbe5df;
+    --blue: #3d6f9e;
+    --blue-dark: #315d86;
+    --blue-soft: #e8f0f7;
+    --green: #2f9e41;
+    --green-dark: #217a31;
+    --green-soft: #e8f5e9;
+    --shadow: 0 1rem 3rem rgba(29, 43, 59, 0.08);
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at 8% 4%, rgba(47, 158, 65, 0.09), transparent 28rem),
+        radial-gradient(circle at 92% 18%, rgba(61, 111, 158, 0.08), transparent 25rem),
+        var(--canvas);
+}
+
+/* ---------- barra de navegacao ---------- */
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    padding: 0.85rem 1rem 0;
+    background: rgba(237, 243, 240, 0.92);
+}
+
+.header-inner {
+    display: flex;
+    width: min(1160px, 100%);
+    min-height: 66px;
+    align-items: center;
+    gap: 2rem;
+    margin: 0 auto;
+    padding: 0 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: rgba(251, 253, 251, 0.94);
+    box-shadow: 0 0.5rem 2rem rgba(29, 43, 59, 0.06);
+    backdrop-filter: blur(16px);
+}
+
+.brand-button {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.brand-button:hover {
+    color: var(--ink);
+}
+
+.brand-symbol {
+    display: grid;
+    width: 2.2rem;
+    height: 2.2rem;
+    place-items: center;
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 800;
+    border-radius: 0.7rem;
+    background: linear-gradient(145deg, #3caf50, #237e33);
+    box-shadow: 0 0.5rem 1rem rgba(47, 158, 65, 0.24);
+}
+
+/* o menu usa o "collapse" do Bootstrap; no desktop fica sempre aberto */
+.main-nav.collapse:not(.show) {
+    display: flex;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.main-nav a {
+    display: flex;
+    min-height: 40px;
+    align-items: center;
+    padding: 0 0.9rem;
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 550;
+    text-decoration: none;
+    border-radius: 0.65rem;
+    transition: 160ms ease;
+}
+
+.main-nav a:hover {
+    color: var(--ink);
+    background: #f4f5f8;
+}
+
+.main-nav a.active {
+    color: var(--green-dark);
+    background: var(--green-soft);
+}
+
+.menu-button {
+    display: none;
+    margin-left: auto;
+    color: var(--green-dark);
+    font-size: 0.72rem;
+    font-weight: 650;
+    background: var(--green-soft);
+}
+
+.menu-button:hover {
+    color: var(--green-dark);
+    background: #d9eedc;
+}
+
+.user-dropdown {
+    margin-left: auto;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+}
+
+.user-avatar {
+    position: relative;
+    display: block;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0.4rem 1rem rgba(47, 158, 65, 0.2);
+}
+
+.user-avatar::before {
+    position: absolute;
+    top: 0.55rem;
+    left: 50%;
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 50%;
+    background: white;
+    content: "";
+    transform: translateX(-50%);
+}
+
+.user-avatar > span {
+    position: absolute;
+    right: 0.55rem;
+    bottom: 0.48rem;
+    left: 0.55rem;
+    height: 0.7rem;
+    border-radius: 0.7rem 0.7rem 0.4rem 0.4rem;
+    background: white;
+}
+
+.user-menu:focus-visible,
+.menu-button:focus-visible,
+.main-nav a:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(47, 158, 65, 0.25);
+}
+
+.dropdown-menu {
+    padding: 0.4rem;
+    border-color: var(--line);
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow);
+}
+
+.dropdown-menu .dropdown-header {
+    color: var(--ink);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.dropdown-menu .dropdown-item {
+    font-size: 0.74rem;
+    border-radius: 0.5rem;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    color: var(--green-dark);
+    background: var(--green-soft);
+}
+
+/* ---------- estrutura das paginas ---------- */
+
+.page-container {
+    width: min(1080px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 4.2rem 0 5rem;
+}
+
+.flash-area {
+    width: min(1080px, calc(100% - 2rem));
+    margin: 1.5rem auto 0;
+}
+
+.flash-area + .page-container {
+    padding-top: 2rem;
+}
+
+.page-intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.page-intro > div > span {
+    color: var(--green);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+.page-intro h1 {
+    margin: 0.55rem 0 0;
+    font-size: clamp(1.8rem, 4vw, 2.65rem);
+    font-weight: 760;
+    letter-spacing: -0.055em;
+}
+
+/* ---------- botoes e alertas ---------- */
+
+.btn-accent {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.15rem;
+    color: white;
+    font-size: 0.76rem;
+    font-weight: 700;
+    border-color: var(--green);
+    border-radius: 0.7rem;
+    background: var(--green);
+    box-shadow: 0 0.5rem 1.2rem rgba(47, 158, 65, 0.2);
+}
+
+.btn-accent:hover,
+.btn-accent:focus {
+    color: white;
+    border-color: var(--green-dark);
+    background: var(--green-dark);
+}
+
+.btn-accent:focus {
+    box-shadow: 0 0 0 0.2rem rgba(47, 158, 65, 0.3);
+}
+
+.btn-outline-primary {
+    color: var(--blue);
+    border-color: #b9cde0;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:active {
+    color: white;
+    border-color: var(--blue);
+    background: var(--blue);
+}
+
+.btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(61, 111, 158, 0.25);
+}
+
+.alert {
+    font-size: 0.8rem;
+    border-radius: 0.75rem;
+}
+
+.alert-info {
+    color: var(--blue-dark);
+    border-color: #cfe0ee;
+    background: var(--blue-soft);
+}
+
+.alert-success {
+    color: #21624f;
+    border-color: #cce5dc;
+    background: var(--green-soft);
+}
+
+.alert-danger {
+    color: #8a2f39;
+    border-color: #f1ccd0;
+    background: #fbeaec;
+}
+
+/* ---------- inicio: reservas e resumo ---------- */
+
+.home-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 230px;
+    gap: 1rem;
+}
+
+.reservation-area {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+}
+
+.reservation-card {
+    display: grid;
+    min-height: 250px;
+    grid-template-columns: 120px 1fr auto;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 1.2rem;
+    background: linear-gradient(135deg, var(--surface) 65%, #f0f7f2);
+    box-shadow: var(--shadow);
+}
+
+.reservation-date {
+    display: flex;
+    min-height: 190px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-dark);
+    border-radius: 0.9rem;
+    background: var(--green-soft);
+}
+
+.reservation-date span {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.reservation-date strong {
+    margin: 0.15rem 0;
+    font-size: 2.6rem;
+    line-height: 1;
+}
+
+.reservation-date small {
+    color: #5f8b66;
+    font-size: 0.62rem;
+}
+
+.reservation-main {
+    align-self: center;
+}
+
+.reservation-status {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    padding: 0.3rem 0.55rem;
+    color: var(--green);
+    font-size: 0.55rem;
+    font-weight: 750;
+    border-radius: 2rem;
+    background: var(--green-soft);
+}
+
+.reservation-main h2 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 720;
+}
+
+.reservation-main > p {
+    margin: 0.25rem 0 1.4rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+}
+
+.reservation-details {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.reservation-details > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.reservation-details span {
+    color: var(--muted);
+    font-size: 0.57rem;
+}
+
+.reservation-details strong {
+    font-size: 0.72rem;
+}
+
+.reservation-actions {
+    display: flex;
+    align-self: end;
+    justify-self: end;
+    gap: 0.4rem;
+}
+
+.reservation-actions .btn,
+.catalog-actions .btn,
+.equipment-actions .btn {
+    font-size: 0.65rem;
+    border-radius: 0.55rem;
+}
+
+.reservation-actions .btn {
+    min-width: 72px;
+}
+
+.home-summary {
+    display: flex;
+    align-self: start;
+    flex-direction: column;
+    position: sticky;
+    top: 6.4rem;
+    padding: 1.3rem;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.2rem;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(47, 158, 65, 0.28), transparent 10rem),
+        linear-gradient(155deg, #203b4a, #172b37);
+    box-shadow: 0 1rem 3rem rgba(20, 40, 51, 0.18);
+}
+
+.summary-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.summary-heading > span {
+    color: #a9bdc7;
+    font-size: 0.56rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+}
+
+.summary-stat {
+    padding: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.8rem;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.summary-stat + .summary-stat {
+    margin-top: 0.55rem;
+}
+
+.summary-stat strong {
+    display: block;
+    color: #8ee39c;
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+.summary-stat small {
+    display: block;
+    margin-top: 0.35rem;
+    color: #aebcc3;
+    font-size: 0.62rem;
+}
+
+.summary-stat-availability {
+    border-color: rgba(229, 163, 65, 0.22);
+    background: rgba(229, 163, 65, 0.1);
+}
+
+.summary-stat-availability strong {
+    color: #f2bd6e;
+}
+
+.summary-stat-availability small {
+    color: #d6c4a8;
+}
+
+.home-summary .summary-link {
+    margin-top: 0.9rem;
+    min-height: 38px;
+    padding: 0.6rem 0.8rem 0;
+    color: white;
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-align: left;
+    text-decoration: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 160ms ease;
+}
+
+.home-summary .summary-link:hover {
+    color: #8ee39c;
+}
+
+.empty-message {
+    display: flex;
+    min-height: 250px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--line);
+    border-radius: 1.2rem;
+    background: white;
+    box-shadow: var(--shadow);
+}
+
+.empty-code {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    place-items: center;
+    color: var(--green-dark);
+    font-size: 0.7rem;
+    font-weight: 800;
+    border-radius: 0.8rem;
+    background: var(--green-soft);
+}
+
+.empty-message h2 {
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+}
+
+/* ---------- formularios ---------- */
+
+.form-label {
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 650;
+}
+
+.form-control,
+.form-select {
+    min-height: 43px;
+    font-size: 0.75rem;
+    border-color: var(--line);
+    border-radius: 0.6rem;
+    background-color: #fafbfc;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #78bf84;
+    box-shadow: 0 0 0 0.2rem rgba(47, 158, 65, 0.11);
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 275px;
+    align-items: start;
+    gap: 1rem;
+}
+
+.booking-fields {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 1.1rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.form-section {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0.9rem;
+    padding: 1.4rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.form-section:last-child {
+    border-bottom: 0;
+}
+
+.form-step {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    color: var(--green-dark);
+    font-size: 0.6rem;
+    font-weight: 800;
+    border-radius: 0.6rem;
+    background: var(--green-soft);
+}
+
+.form-section-content h2,
+.equipment-fieldset legend {
+    margin: 0 0 1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.equipment-fieldset {
+    min-width: 0;
+    padding: 0;
+    border: 0;
+}
+
+.equipment-fieldset legend {
+    float: none;
+    width: auto;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.equipment-fieldset legend small {
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 400;
+}
+
+.equipment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+.equipment-options label {
+    display: flex;
+    min-height: 43px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0.4rem 0.5rem 0.4rem 0.75rem;
+    color: var(--ink);
+    font-size: 0.67rem;
+    font-weight: 400;
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    background: #fafbfc;
+}
+
+.equipment-options small {
+    color: var(--muted);
+}
+
+.equipment-options input {
+    width: 54px;
+    min-height: 32px;
+    flex: none;
+    background: white;
+}
+
+.booking-summary {
+    position: sticky;
+    top: 6.4rem;
+    padding: 1.35rem;
+    border: 1px solid var(--line);
+    border-radius: 1.1rem;
+    background: linear-gradient(160deg, var(--surface), #f1f7f3);
+    box-shadow: var(--shadow);
+}
+
+.summary-label {
+    display: block;
+    color: var(--muted);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+}
+
+.summary-room {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 1rem 0;
+    padding: 0.8rem;
+    color: var(--muted);
+    border-radius: 0.75rem;
+    background: #eef3f0;
+}
+
+.summary-room > span {
+    display: grid;
+    width: 2.3rem;
+    height: 2.3rem;
+    flex: none;
+    place-items: center;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 0.6rem;
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.summary-room > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+}
+
+.summary-room strong {
+    overflow: hidden;
+    font-size: 0.68rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.summary-room small {
+    overflow: hidden;
+    font-size: 0.56rem;
+    opacity: 0.75;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* cor por tipo de sala (nome do enum TipoSala) */
+.summary-room-SALA_DE_AULA,
+.catalog-visual-SALA_DE_AULA {
+    color: #32699b;
+    background: #e7f1fb;
+}
+
+.summary-room-LABORATORIO,
+.catalog-visual-LABORATORIO {
+    color: #277158;
+    background: #e5f3ec;
+}
+
+.summary-room-AUDITORIO,
+.catalog-visual-AUDITORIO {
+    color: #a85c28;
+    background: #fff0e5;
+}
+
+.booking-summary dl {
+    margin: 0 0 1.2rem;
+}
+
+.booking-summary dl > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    font-size: 0.64rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.booking-summary dt {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.booking-summary dd {
+    margin: 0;
+    font-weight: 650;
+    text-align: right;
+}
+
+.summary-back {
+    display: block;
+    margin-top: 0.8rem;
+    color: var(--muted);
+    font-size: 0.66rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.summary-back:hover {
+    color: var(--ink);
+}
+
+/* ---------- catalogos: salas e equipamentos ---------- */
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.catalog-card {
+    display: grid;
+    grid-template-columns: 145px 1fr;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 1.1rem;
+    background: var(--surface);
+    box-shadow: 0 0.5rem 2rem rgba(29, 43, 59, 0.05);
+    transition: 180ms ease;
+}
+
+.catalog-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+}
+
+.catalog-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.catalog-visual span {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.52rem;
+    font-weight: 700;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.catalog-visual strong {
+    font-size: 2rem;
+    text-transform: uppercase;
+    opacity: 0.65;
+}
+
+.catalog-body {
+    min-width: 0;
+    padding: 1.2rem;
+}
+
+.catalog-body h2 {
+    margin: 0;
+    font-size: 0.86rem;
+}
+
+.catalog-body > p {
+    margin: 0.25rem 0 1rem;
+    color: var(--muted);
+    font-size: 0.62rem;
+}
+
+.catalog-meta {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+}
+
+.catalog-meta span {
+    color: var(--muted);
+    font-size: 0.55rem;
+}
+
+.catalog-meta strong {
+    font-size: 0.68rem;
+}
+
+.catalog-actions,
+.equipment-actions {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.equipment-list {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.equipment-card {
+    display: grid;
+    grid-template-columns: 50px 1.1fr 0.7fr 1.6fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
+    background: var(--surface);
+    box-shadow: 0 0.35rem 1.3rem rgba(29, 43, 59, 0.04);
+    transition: 160ms ease;
+}
+
+.equipment-card:hover {
+    border-color: #cfd5e7;
+    transform: translateX(3px);
+}
+
+.equipment-code {
+    display: grid;
+    width: 2.7rem;
+    height: 2.7rem;
+    place-items: center;
+    color: var(--green-dark);
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 0.7rem;
+    background: var(--green-soft);
+}
+
+.equipment-name h2 {
+    margin: 0;
+    font-size: 0.78rem;
+}
+
+.equipment-name p,
+.equipment-use {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.62rem;
+}
+
+.equipment-type {
+    width: fit-content;
+    padding: 0.3rem 0.5rem;
+    color: var(--blue-dark);
+    font-size: 0.55rem;
+    font-weight: 650;
+    border-radius: 2rem;
+    background: var(--blue-soft);
+}
+
+/* ---------- janelas (modal) ---------- */
+
+.modal-content {
+    border-color: var(--line);
+    border-radius: 1.1rem;
+    box-shadow: var(--shadow);
+}
+
+.modal-header {
+    padding: 1.2rem 1.4rem;
+    border-bottom-color: var(--line);
+}
+
+.modal-title {
+    font-weight: 700;
+}
+
+.modal-body {
+    padding: 1.4rem;
+}
+
+/* ---------- login e cadastro ---------- */
+
+.auth-page {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+}
+
+.auth-card {
+    width: min(100%, 25rem);
+    padding: 2rem 1.75rem;
+    border: 1px solid var(--line);
+    border-radius: 1.2rem;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.auth-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+}
+
+.auth-brand .brand-symbol {
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.8rem;
+}
+
+.auth-brand h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 760;
+    letter-spacing: -0.03em;
+}
+
+.auth-card .alert {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.auth-switch {
+    margin: 1.4rem 0 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    text-align: center;
+}
+
+.auth-switch a {
+    color: var(--green-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* ---------- responsividade ---------- */
+
+@media (max-width: 850px) {
+    .home-layout,
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .home-summary {
+        display: grid;
+        position: static;
+        grid-template-columns: auto repeat(3, 1fr) auto;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .summary-heading {
+        display: block;
+        margin: 0;
+    }
+
+    .summary-stat {
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+
+    .summary-stat + .summary-stat {
+        margin-top: 0;
+    }
+
+    .home-summary .summary-link {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    .booking-summary {
+        position: static;
+    }
+
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .app-header {
+        padding: 0;
+    }
+
+    .header-inner {
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .menu-button {
+        display: inline-block;
+    }
+
+    .user-dropdown {
+        margin-left: 0;
+    }
+
+    .main-nav.collapse:not(.show) {
+        display: none;
+    }
+
+    .main-nav {
+        order: 5;
+        width: 100%;
+        align-items: stretch;
+        flex-direction: column;
+        padding-bottom: 0.7rem;
+    }
+
+    .main-nav.show,
+    .main-nav.collapsing {
+        display: flex;
+    }
+
+    .page-container {
+        width: calc(100% - 1.4rem);
+        padding-top: 2.5rem;
+    }
+
+    .flash-area {
+        width: calc(100% - 1.4rem);
+    }
+
+    .page-intro {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .page-intro > .btn {
+        width: 100%;
+    }
+
+    .reservation-card {
+        grid-template-columns: 82px 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .reservation-date {
+        min-height: 170px;
+    }
+
+    .reservation-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-end;
+    }
+
+    .home-summary {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .summary-heading,
+    .home-summary .summary-link {
+        grid-column: 1 / -1;
+    }
+
+    .summary-stat-availability {
+        grid-column: 1 / -1;
+    }
+
+    .equipment-options {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-card {
+        grid-template-columns: 110px 1fr;
+    }
+
+    .equipment-card {
+        grid-template-columns: 48px 1fr auto;
+    }
+
+    .equipment-type {
+        grid-column: 2;
+    }
+
+    .equipment-use {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 440px) {
+    /* o avatar continua visivel: e por ele que o professor sai do sistema */
+    .brand-button > span:last-child {
+        display: none;
+    }
+
+    .reservation-card {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-date {
+        min-height: 90px;
+    }
+
+    .reservation-details {
+        gap: 1rem;
+    }
+
+    .form-section {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-card {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-visual {
+        min-height: 100px;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
