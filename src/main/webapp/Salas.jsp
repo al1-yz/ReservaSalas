@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="ifpe" uri="https://portal.ifpe.edu.br/recife/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,39 +19,54 @@
         <ifpe:CarregaSalas/>
         <ifpe:CarregaTiposSala/>
 
-        <div class="container mt-4">
+        <main class="page-container">
 
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3>Salas</h3>
-                <button class="btn btn-success" data-bs-toggle="modal"
+            <div class="page-intro">
+                <div>
+                    <span>ESPAÇOS</span>
+                    <h1>Salas</h1>
+                </div>
+                <button class="btn btn-accent" data-bs-toggle="modal"
                         data-bs-target="#modalCadastro">Nova sala</button>
             </div>
 
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th>Nome</th><th>Localização</th><th>Capacidade</th><th>Tipo</th><th>Ações</th>
-                    </tr>
+            <c:choose>
+                <c:when test="${empty pageScope.salas}">
+                    <div class="empty-message">
+                        <span class="empty-code">00</span>
+                        <h2>Nenhuma sala cadastrada.</h2>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="catalog-grid">
+                        <c:forEach var="sala" items="${pageScope.salas}">
+                            <article class="catalog-card">
+                                <div class="catalog-visual catalog-visual-${sala.tipo}">
+                                    <span>${sala.tipo.descricao}</span>
+                                    <strong><c:out value="${fn:substring(sala.nome, 0, 2)}"/></strong>
+                                </div>
+                                <div class="catalog-body">
+                                    <h2><c:out value="${sala.nome}"/></h2>
+                                    <p><c:out value="${sala.localizacao}"/></p>
+                                    <div class="catalog-meta">
+                                        <span>Capacidade</span>
+                                        <strong>${sala.capacidade} pessoas</strong>
+                                    </div>
+                                    <div class="catalog-actions">
+                                        <a class="btn btn-outline-primary"
+                                           href="Salas?id=${sala.id}&amp;operacao=editar">editar</a>
+                                        <a class="btn btn-light text-danger"
+                                           href="Salas?id=${sala.id}&amp;operacao=deletar"
+                                           onclick="return confirm('Excluir esta sala?')">excluir</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </c:forEach>
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
-                    <c:forEach var="sala" items="${pageScope.salas}">
-                        <tr>
-                            <td><c:out value="${sala.nome}"/></td>
-                            <td><c:out value="${sala.localizacao}"/></td>
-                            <td>${sala.capacidade}</td>
-                            <td>${sala.tipo.descricao}</td>
-                            <td>
-                                <a class="btn btn-info btn-sm"
-                                   href="Salas?id=${sala.id}&amp;operacao=editar">editar</a>
-                                <a class="btn btn-danger btn-sm"
-                                   href="Salas?id=${sala.id}&amp;operacao=deletar"
-                                   onclick="return confirm('Excluir esta sala?')">excluir</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-
-        </div>
+        </main>
 
         <!-- Modal -->
         <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="modalCadastroLabel" aria-hidden="true">

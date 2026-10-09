@@ -33,6 +33,6 @@
     </div>
 
     <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary">${editando ? 'Atualizar' : 'Cadastrar'}</button>
+        <button type="submit" class="btn btn-accent">${editando ? 'Atualizar' : 'Cadastrar'}</button>
     </div>
 </form>

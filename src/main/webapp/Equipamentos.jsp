@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="ifpe" uri="https://portal.ifpe.edu.br/recife/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,39 +18,49 @@
 
         <ifpe:CarregaEquipamentos/>
 
-        <div class="container mt-4">
+        <main class="page-container">
 
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3>Equipamentos</h3>
-                <button class="btn btn-success" data-bs-toggle="modal"
+            <div class="page-intro">
+                <div>
+                    <span>RECURSOS</span>
+                    <h1>Equipamentos</h1>
+                </div>
+                <button class="btn btn-accent" data-bs-toggle="modal"
                         data-bs-target="#modalCadastro">Novo equipamento</button>
             </div>
 
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th>Nome</th><th>Marca</th><th>Tipo</th><th>Utilidade</th><th>Ações</th>
-                    </tr>
+            <c:choose>
+                <c:when test="${empty pageScope.equipamentos}">
+                    <div class="empty-message">
+                        <span class="empty-code">00</span>
+                        <h2>Nenhum equipamento cadastrado.</h2>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="equipment-list">
+                        <c:forEach var="equipamento" items="${pageScope.equipamentos}">
+                            <article class="equipment-card">
+                                <span class="equipment-code"><c:out value="${fn:substring(equipamento.nome, 0, 2)}"/></span>
+                                <div class="equipment-name">
+                                    <h2><c:out value="${equipamento.nome}"/></h2>
+                                    <p><c:out value="${equipamento.marca}"/></p>
+                                </div>
+                                <span class="equipment-type"><c:out value="${equipamento.tipo}"/></span>
+                                <p class="equipment-use"><c:out value="${equipamento.utilidade}"/></p>
+                                <div class="equipment-actions">
+                                    <a class="btn btn-outline-primary"
+                                       href="Equipamentos?id=${equipamento.id}&amp;operacao=editar">editar</a>
+                                    <a class="btn btn-light text-danger"
+                                       href="Equipamentos?id=${equipamento.id}&amp;operacao=deletar"
+                                       onclick="return confirm('Excluir este equipamento?')">excluir</a>
+                                </div>
+                            </article>
+                        </c:forEach>
+                    </div>
+                </c:otherwise>
+            </c:choose>
 
-                    <c:forEach var="equipamento" items="${pageScope.equipamentos}">
-                        <tr>
-                            <td><c:out value="${equipamento.nome}"/></td>
-                            <td><c:out value="${equipamento.marca}"/></td>
-                            <td><c:out value="${equipamento.tipo}"/></td>
-                            <td><c:out value="${equipamento.utilidade}"/></td>
-                            <td>
-                                <a class="btn btn-info btn-sm"
-                                   href="Equipamentos?id=${equipamento.id}&amp;operacao=editar">editar</a>
-                                <a class="btn btn-danger btn-sm"
-                                   href="Equipamentos?id=${equipamento.id}&amp;operacao=deletar"
-                                   onclick="return confirm('Excluir este equipamento?')">excluir</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-
-        </div>
+        </main>
 
         <!-- Modal -->
         <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="modalCadastroLabel" aria-hidden="true">
