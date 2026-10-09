@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="ifpe" uri="https://portal.ifpe.edu.br/recife/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,53 +16,107 @@
 
         <jsp:directive.include file="menuProfessor.jsp"/>
 
-        <div class="container mt-4">
+        <ifpe:CarregaSalas/>
+        <fmt:setLocale value="pt_BR"/>
 
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-                <h3 class="mb-0">Salas reservadas por você</h3>
-                <a class="btn btn-success" href="ReservarSala.jsp">Reservar nova sala</a>
+        <%-- resumo: total de horas das reservas do professor logado --%>
+        <c:set var="totalHoras" value="0"/>
+        <c:forEach var="aula" items="${sessionScope.professorLogado.aulas}">
+            <c:set var="totalHoras" value="${totalHoras + aula.duracao}"/>
+        </c:forEach>
+        <c:set var="totalReservas" value="${sessionScope.professorLogado.aulas.size()}"/>
+        <c:set var="totalSalas" value="${pageScope.salas.size()}"/>
+
+        <main class="page-container">
+
+            <div class="page-intro">
+                <div>
+                    <span>INÍCIO</span>
+                    <h1>Salas reservadas por você</h1>
+                </div>
+                <a class="btn btn-accent" href="ReservarSala.jsp">Reservar nova sala</a>
             </div>
 
-            <c:choose>
-                <c:when test="${empty sessionScope.professorLogado.aulas}">
-                    <p class="text-muted">Você ainda não reservou nenhuma sala.</p>
-                </c:when>
-                <c:otherwise>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tr>
-                                <th>Data</th><th>Horário</th><th>Sala</th><th>Equipamentos</th><th>Ações</th>
-                            </tr>
+            <div class="home-layout">
 
+                <div class="reservation-area">
+                    <c:choose>
+                        <c:when test="${empty sessionScope.professorLogado.aulas}">
+                            <div class="empty-message">
+                                <span class="empty-code">00</span>
+                                <h2>Você não possui salas reservadas.</h2>
+                                <a class="btn btn-accent" href="ReservarSala.jsp">Reservar nova sala</a>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
                             <c:forEach var="aula" items="${sessionScope.professorLogado.aulas}">
-                                <tr>
-                                    <td>${aula.dataFormatada}</td>
-                                    <td>${aula.hora}h às ${aula.horaFim}h</td>
-                                    <td>
-                                        <c:out value="${aula.sala.nome}"/>
-                                        <small class="text-muted">(<c:out value="${aula.sala.localizacao}"/>)</small>
-                                    </td>
-                                    <td>
-                                        <c:forEach var="item" items="${aula.itens}">
-                                            <c:out value="${item.equipamento.nome}"/> x${item.quantidadeUsada}<br/>
-                                        </c:forEach>
-                                        <c:if test="${empty aula.itens}">-</c:if>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info btn-sm"
+                                <fmt:formatDate value="${aula.data}" pattern="MMM" var="mesReserva"/>
+                                <fmt:formatDate value="${aula.data}" pattern="d" var="diaReserva"/>
+                                <fmt:formatDate value="${aula.data}" pattern="EEEE" var="semanaReserva"/>
+
+                                <article class="reservation-card">
+                                    <div class="reservation-date" title="${aula.dataFormatada}">
+                                        <span>${mesReserva}</span>
+                                        <strong>${diaReserva}</strong>
+                                        <small>${semanaReserva}</small>
+                                    </div>
+
+                                    <div class="reservation-main">
+                                        <div class="reservation-status">Confirmada</div>
+                                        <h2><c:out value="${aula.sala.nome}"/></h2>
+                                        <p><c:out value="${aula.sala.localizacao}"/></p>
+                                        <div class="reservation-details">
+                                            <div>
+                                                <span>Horário</span>
+                                                <strong>${aula.hora}h às ${aula.horaFim}h</strong>
+                                            </div>
+                                            <div>
+                                                <span>Equipamentos</span>
+                                                <strong>
+                                                    <c:forEach var="item" items="${aula.itens}">
+                                                        <c:out value="${item.equipamento.nome}"/> x${item.quantidadeUsada}<br/>
+                                                    </c:forEach>
+                                                    <c:if test="${empty aula.itens}">Nenhum</c:if>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="reservation-actions">
+                                        <a class="btn btn-outline-primary"
                                            href="Aulas?id=${aula.id}&amp;operacao=editar">editar</a>
-                                        <a class="btn btn-danger btn-sm"
+                                        <a class="btn btn-light text-danger"
                                            href="Aulas?id=${aula.id}&amp;operacao=cancelar"
                                            onclick="return confirm('Cancelar esta reserva?')">cancelar</a>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </article>
                             </c:forEach>
-                        </table>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
 
-        </div>
+                <aside class="home-summary" aria-label="Resumo">
+                    <div class="summary-heading">
+                        <span>RESUMO</span>
+                    </div>
+                    <div class="summary-stat">
+                        <strong>${totalReservas}</strong>
+                        <small>${totalReservas eq 1 ? 'reserva' : 'reservas'}</small>
+                    </div>
+                    <div class="summary-stat">
+                        <strong>${totalHoras}h</strong>
+                        <small>tempo reservado</small>
+                    </div>
+                    <div class="summary-stat summary-stat-availability">
+                        <strong>${totalSalas}</strong>
+                        <small>${totalSalas eq 1 ? 'sala cadastrada' : 'salas cadastradas'}</small>
+                    </div>
+                    <a class="summary-link" href="Salas.jsp">Ver todas as salas</a>
+                </aside>
+
+            </div>
+
+        </main>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
