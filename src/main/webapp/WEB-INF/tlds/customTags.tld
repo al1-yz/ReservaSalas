@@ -11,6 +11,12 @@
   </tag>
 
   <tag>
+      <name>CarregaEquipamentos</name>
+      <tag-class>br.edu.ifpe.recife.reservasalas.controllers.jspTags.CarregaEquipamentos</tag-class>
+      <body-content>empty</body-content>
+  </tag>
+
+  <tag>
       <name>CarregaTiposSala</name>
       <tag-class>br.edu.ifpe.recife.reservasalas.controllers.jspTags.CarregaTiposSala</tag-class>
       <body-content>empty</body-content>

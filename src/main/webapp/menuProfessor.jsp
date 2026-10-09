@@ -18,6 +18,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="Salas.jsp">Salas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Equipamentos.jsp">Equipamentos</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
