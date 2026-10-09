@@ -16,6 +16,9 @@
                     <a class="nav-link" href="indexProfessor.jsp">Início</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="ReservarSala.jsp">Reservar sala</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="Salas.jsp">Salas</a>
                 </li>
                 <li class="nav-item">

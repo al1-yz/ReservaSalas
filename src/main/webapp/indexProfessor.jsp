@@ -14,7 +14,10 @@
 
         <div class="container mt-4">
 
-            <h3 class="mb-3">Salas reservadas por você</h3>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0">Salas reservadas por você</h3>
+                <a class="btn btn-success" href="ReservarSala.jsp">Reservar nova sala</a>
+            </div>
 
             <c:choose>
                 <c:when test="${empty sessionScope.professorLogado.aulas}">
@@ -23,7 +26,7 @@
                 <c:otherwise>
                     <table class="table">
                         <tr>
-                            <th>Data</th><th>Horário</th><th>Sala</th><th>Equipamentos</th>
+                            <th>Data</th><th>Horário</th><th>Sala</th><th>Equipamentos</th><th>Ações</th>
                         </tr>
 
                         <c:forEach var="aula" items="${sessionScope.professorLogado.aulas}">
@@ -39,6 +42,13 @@
                                         <c:out value="${item.equipamento.nome}"/> x${item.quantidadeUsada}<br/>
                                     </c:forEach>
                                     <c:if test="${empty aula.itens}">-</c:if>
+                                </td>
+                                <td>
+                                    <a class="btn btn-info btn-sm"
+                                       href="Aulas?id=${aula.id}&amp;operacao=editar">editar</a>
+                                    <a class="btn btn-danger btn-sm"
+                                       href="Aulas?id=${aula.id}&amp;operacao=cancelar"
+                                       onclick="return confirm('Cancelar esta reserva?')">cancelar</a>
                                 </td>
                             </tr>
                         </c:forEach>
