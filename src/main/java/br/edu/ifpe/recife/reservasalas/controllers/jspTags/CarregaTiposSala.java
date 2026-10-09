@@ -7,7 +7,7 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 /**
- * Carrega os tipos de sala no escopo da pagina (variavel "tipos").
+ * Carrega os tipos de sala no escopo da página (variável "tipos").
  */
 public class CarregaTiposSala extends SimpleTagSupport {
 

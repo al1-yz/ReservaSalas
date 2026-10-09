@@ -98,7 +98,7 @@ public class Aula {
         return 0;
     }
 
-    // mesma sala, mesmo dia e intervalos de horas que se sobrepoem
+    // mesma sala, mesmo dia e intervalos de horas que se sobrepõem
     public boolean conflitaCom(Aula outra) {
         return this.sala.getId() == outra.sala.getId()
                 && this.getDataIso().equals(outra.getDataIso())

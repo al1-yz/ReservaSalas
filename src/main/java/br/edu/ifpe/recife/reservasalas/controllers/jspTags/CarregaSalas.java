@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Carrega as salas no escopo da pagina (variavel "salas").
+ * Carrega as salas no escopo da página (variável "salas").
  */
 public class CarregaSalas extends SimpleTagSupport {
 

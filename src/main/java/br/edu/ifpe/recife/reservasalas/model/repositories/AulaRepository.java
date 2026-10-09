@@ -55,9 +55,9 @@ public class AulaRepository {
     }
 
     /**
-     * Devolve a reserva que entra em conflito de horario com a informada
-     * (mesma sala e data, horas sobrepostas), ou null se nao houver.
-     * A propria reserva e ignorada pelo id, o que permite usar na edicao.
+     * Devolve a reserva que entra em conflito de horário com a informada
+     * (mesma sala e data, horas sobrepostas), ou null se não houver.
+     * A própria reserva é ignorada pelo id, o que permite usar na edição.
      */
     public static Aula readConflito(Aula aula) {
         for (Aula a : aulas) {

@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * CRUD de Equipamento. A listagem e feita por Equipamentos.jsp (tag CarregaEquipamentos).
+ * CRUD de Equipamento. A listagem é feita por Equipamentos.jsp (tag CarregaEquipamentos).
  */
 @WebServlet(name = "EquipamentoController", urlPatterns = {"/Equipamentos"})
 public class EquipamentoController extends HttpServlet {

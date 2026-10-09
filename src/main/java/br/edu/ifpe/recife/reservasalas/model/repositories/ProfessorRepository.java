@@ -27,9 +27,9 @@ public class ProfessorRepository {
         professores.add(carlos);
 
         /*
-         Reservas iniciais: cada uma e criada no AulaRepository e tambem ligada
+         Reservas iniciais: cada uma é criada no AulaRepository e também ligada
          ao professor (a lista de aulas dele), como o EntregadorRepository faz
-         com a lista de entregadores da loja. Ficam aqui para que ja existam
+         com a lista de entregadores da loja. Ficam aqui para que já existam
          assim que o primeiro professor for carregado.
         */
         Calendar amanha = Calendar.getInstance();
@@ -67,7 +67,7 @@ public class ProfessorRepository {
         AulaRepository.create(a);
         carlos.getAulas().add(a);
 
-        // reserva sem equipamentos (os itens sao opcionais)
+        // reserva sem equipamentos (os itens são opcionais)
         a = new Aula();
         a.setData(depoisDeAmanha.getTime());
         a.setHora(8);

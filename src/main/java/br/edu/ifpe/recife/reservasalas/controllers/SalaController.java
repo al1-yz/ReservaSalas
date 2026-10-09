@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * CRUD de Sala. A listagem e feita por Salas.jsp (tag CarregaSalas).
+ * CRUD de Sala. A listagem é feita por Salas.jsp (tag CarregaSalas).
  */
 @WebServlet(name = "SalaController", urlPatterns = {"/Salas"})
 public class SalaController extends HttpServlet {

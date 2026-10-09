@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Carrega os equipamentos no escopo da pagina (variavel "equipamentos").
+ * Carrega os equipamentos no escopo da página (variável "equipamentos").
  */
 public class CarregaEquipamentos extends SimpleTagSupport {
 

@@ -5,6 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
         <title>Reserva de Salas - Salas</title>
@@ -24,27 +25,29 @@
                         data-bs-target="#modalCadastro">Nova sala</button>
             </div>
 
-            <table class="table">
-                <tr>
-                    <th>Nome</th><th>Localização</th><th>Capacidade</th><th>Tipo</th><th>Ações</th>
-                </tr>
-
-                <c:forEach var="sala" items="${pageScope.salas}">
+            <div class="table-responsive">
+                <table class="table">
                     <tr>
-                        <td><c:out value="${sala.nome}"/></td>
-                        <td><c:out value="${sala.localizacao}"/></td>
-                        <td>${sala.capacidade}</td>
-                        <td>${sala.tipo.descricao}</td>
-                        <td>
-                            <a class="btn btn-info btn-sm"
-                               href="Salas?id=${sala.id}&amp;operacao=editar">editar</a>
-                            <a class="btn btn-danger btn-sm"
-                               href="Salas?id=${sala.id}&amp;operacao=deletar"
-                               onclick="return confirm('Excluir esta sala?')">excluir</a>
-                        </td>
+                        <th>Nome</th><th>Localização</th><th>Capacidade</th><th>Tipo</th><th>Ações</th>
                     </tr>
-                </c:forEach>
-            </table>
+
+                    <c:forEach var="sala" items="${pageScope.salas}">
+                        <tr>
+                            <td><c:out value="${sala.nome}"/></td>
+                            <td><c:out value="${sala.localizacao}"/></td>
+                            <td>${sala.capacidade}</td>
+                            <td>${sala.tipo.descricao}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm"
+                                   href="Salas?id=${sala.id}&amp;operacao=editar">editar</a>
+                                <a class="btn btn-danger btn-sm"
+                                   href="Salas?id=${sala.id}&amp;operacao=deletar"
+                                   onclick="return confirm('Excluir esta sala?')">excluir</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
 
         </div>
 

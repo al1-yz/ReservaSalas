@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  * Reserva de salas pelo professor logado: reservar, editar e cancelar.
- * Cada professor so altera ou cancela as proprias reservas (validado aqui, no Servlet).
+ * Cada professor só altera ou cancela as próprias reservas (validado aqui, no Servlet).
  */
 @WebServlet(name = "AulaController", urlPatterns = {"/Aulas"})
 public class AulaController extends HttpServlet {
@@ -92,7 +92,7 @@ public class AulaController extends HttpServlet {
         String op = request.getParameter("operacao");
         boolean editando = op != null && op.equals("editar");
 
-        // reserva montada com os dados do formulario
+        // reserva montada com os dados do formulário
         Aula aula = new Aula();
 
         if (editando) {
@@ -114,7 +114,7 @@ public class AulaController extends HttpServlet {
         aula.setHora(lerInteiro(request.getParameter("hora")));
         aula.setDuracao(lerInteiro(request.getParameter("duracao")));
 
-        // equipamentos sao opcionais: so viram item os que tem quantidade maior que zero
+        // equipamentos são opcionais: só viram item os que têm quantidade maior que zero
         boolean quantidadeInvalida = false;
 
         for (Equipamento e : EquipamentoRepository.readAll()) {
@@ -161,7 +161,7 @@ public class AulaController extends HttpServlet {
         }
 
         if (erro != null) {
-            // volta ao formulario com o que foi digitado
+            // volta ao formulário com o que foi digitado
             session.setAttribute("msg", erro);
             session.setAttribute("aula", aula);
             response.sendRedirect("ReservarSala.jsp");
@@ -170,7 +170,7 @@ public class AulaController extends HttpServlet {
 
         if (editando) {
 
-            // a reserva guardada e a mesma que esta na lista do professor
+            // a reserva guardada é a mesma que está na lista do professor
             AulaRepository.update(aula);
 
             session.setAttribute("msg", "Reserva alterada com sucesso!");
@@ -191,7 +191,7 @@ public class AulaController extends HttpServlet {
         return AulaRepository.read(lerInteiro(id));
     }
 
-    // devolve o motivo de o professor nao poder mexer na reserva, ou null se ele e o responsavel
+    // devolve o motivo de o professor não poder mexer na reserva, ou null se ele é o responsável
     private String verificarResponsavel(Professor professor, Aula aula) {
 
         if (aula == null) {
@@ -205,7 +205,7 @@ public class AulaController extends HttpServlet {
         return null;
     }
 
-    // -1 indica valor ausente, nao numerico ou negativo
+    // -1 indica valor ausente, não numérico ou negativo
     private int lerInteiro(String texto) {
 
         if (texto == null) {

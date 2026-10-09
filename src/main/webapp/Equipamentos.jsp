@@ -5,6 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
         <title>Reserva de Salas - Equipamentos</title>
@@ -23,27 +24,29 @@
                         data-bs-target="#modalCadastro">Novo equipamento</button>
             </div>
 
-            <table class="table">
-                <tr>
-                    <th>Nome</th><th>Marca</th><th>Tipo</th><th>Utilidade</th><th>Ações</th>
-                </tr>
-
-                <c:forEach var="equipamento" items="${pageScope.equipamentos}">
+            <div class="table-responsive">
+                <table class="table">
                     <tr>
-                        <td><c:out value="${equipamento.nome}"/></td>
-                        <td><c:out value="${equipamento.marca}"/></td>
-                        <td><c:out value="${equipamento.tipo}"/></td>
-                        <td><c:out value="${equipamento.utilidade}"/></td>
-                        <td>
-                            <a class="btn btn-info btn-sm"
-                               href="Equipamentos?id=${equipamento.id}&amp;operacao=editar">editar</a>
-                            <a class="btn btn-danger btn-sm"
-                               href="Equipamentos?id=${equipamento.id}&amp;operacao=deletar"
-                               onclick="return confirm('Excluir este equipamento?')">excluir</a>
-                        </td>
+                        <th>Nome</th><th>Marca</th><th>Tipo</th><th>Utilidade</th><th>Ações</th>
                     </tr>
-                </c:forEach>
-            </table>
+
+                    <c:forEach var="equipamento" items="${pageScope.equipamentos}">
+                        <tr>
+                            <td><c:out value="${equipamento.nome}"/></td>
+                            <td><c:out value="${equipamento.marca}"/></td>
+                            <td><c:out value="${equipamento.tipo}"/></td>
+                            <td><c:out value="${equipamento.utilidade}"/></td>
+                            <td>
+                                <a class="btn btn-info btn-sm"
+                                   href="Equipamentos?id=${equipamento.id}&amp;operacao=editar">editar</a>
+                                <a class="btn btn-danger btn-sm"
+                                   href="Equipamentos?id=${equipamento.id}&amp;operacao=deletar"
+                                   onclick="return confirm('Excluir este equipamento?')">excluir</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
 
         </div>
 
