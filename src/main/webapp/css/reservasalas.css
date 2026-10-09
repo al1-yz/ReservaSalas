@@ -682,7 +682,6 @@ body {
 }
 
 .summary-label {
-    display: block;
     color: var(--muted);
     font-size: 0.55rem;
     font-weight: 800;
