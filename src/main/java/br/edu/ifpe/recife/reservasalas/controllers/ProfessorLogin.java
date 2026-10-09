@@ -93,6 +93,8 @@ public class ProfessorLogin extends HttpServlet {
                     erro = "Informe um SIAPE numérico, maior que zero.";
                 } else if (nome == null || nome.isBlank() || senha == null || senha.isBlank()) {
                     erro = "Preencha o nome e a senha.";
+                } else if (!nomeValido(nome)) {
+                    erro = "O nome completo deve ter letras e não pode conter números.";
                 } else if (ProfessorRepository.read(siape) != null) {
                     erro = "Já existe um professor cadastrado com o SIAPE " + siape + ".";
                 }
@@ -130,6 +132,20 @@ public class ProfessorLogin extends HttpServlet {
             throws ServletException, IOException {
         request.getServletContext().getRequestDispatcher("/loginProfessor.jsp")
                 .forward(request, response);
+    }
+
+    // nome de pessoa: precisa ter ao menos uma letra e nenhum dígito
+    private boolean nomeValido(String nome) {
+        boolean temLetra = false;
+        for (char c : nome.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return false;
+            }
+            if (Character.isLetter(c)) {
+                temLetra = true;
+            }
+        }
+        return temLetra;
     }
 
     @Override

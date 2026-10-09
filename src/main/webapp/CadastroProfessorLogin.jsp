@@ -18,7 +18,7 @@
     <div class="mb-3">
         <label for="cadNomeInput" class="form-label">Nome completo</label>
         <input type="text" class="form-control" name="nome" id="cadNomeInput"
-               placeholder="Ex.: João Silva" value="<c:out value='${requestScope.cadNome}'/>" required>
+               placeholder="Ex.: João Silva" value="<c:out value='${requestScope.cadNome}'/>" pattern="[^0-9]*[A-Za-zÀ-ÿ][^0-9]*" title="Use apenas letras: o nome não pode ter números" required>
     </div>
 
     <!-- Campo de Senha -->

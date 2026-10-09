@@ -102,6 +102,13 @@ public class SalaController extends HttpServlet {
             return;
         }
 
+        // nome e localização são texto: precisam ter ao menos uma letra (não pode ser só número)
+        if (!temLetra(nome) || !temLetra(localizacao)) {
+            session.setAttribute("msg", "Dados inválidos! Nome e localização devem ser texto e não podem ser só números.");
+            response.sendRedirect("Salas.jsp");
+            return;
+        }
+
         Sala s = new Sala();
         s.setNome(nome.trim());
         s.setLocalizacao(localizacao.trim());
@@ -131,6 +138,15 @@ public class SalaController extends HttpServlet {
 
         response.sendRedirect("Salas.jsp");
 
+    }
+
+    private boolean temLetra(String texto) {
+        for (char c : texto.toCharArray()) {
+            if (Character.isLetter(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Sala lerSala(String id) {

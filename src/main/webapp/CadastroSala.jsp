@@ -11,13 +11,13 @@
     <div class="mb-3">
         <label for="salaNomeInput" class="form-label">Nome</label>
         <input type="text" class="form-control" name="nome" id="salaNomeInput"
-               value="<c:out value='${sessionScope.sala.nome}'/>" required>
+               value="<c:out value='${sessionScope.sala.nome}'/>" pattern=".*[A-Za-zÀ-ÿ].*" title="Use texto: não pode ser só número" required>
     </div>
 
     <div class="mb-3">
         <label for="salaLocalizacaoInput" class="form-label">Localização</label>
         <input type="text" class="form-control" name="localizacao" id="salaLocalizacaoInput"
-               value="<c:out value='${sessionScope.sala.localizacao}'/>" required>
+               value="<c:out value='${sessionScope.sala.localizacao}'/>" pattern=".*[A-Za-zÀ-ÿ].*" title="Use texto: não pode ser só número" required>
     </div>
 
     <div class="mb-3">
