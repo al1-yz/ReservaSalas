@@ -29,7 +29,7 @@
                     <!-- Campo de SIAPE -->
                     <div class="mb-3">
                         <label for="siapeInput" class="form-label">SIAPE</label>
-                        <input type="number" name="siape" class="form-control" id="siapeInput"
+                        <input type="text" inputmode="numeric" pattern="[0-9]+" title="Digite apenas números" autocomplete="off" name="siape" class="form-control" id="siapeInput"
                                placeholder="Seu SIAPE" value="<c:out value='${requestScope.siapeLogin}'/>" required>
                     </div>
 

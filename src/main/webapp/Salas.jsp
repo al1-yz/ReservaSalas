@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="ifpe" uri="https://portal.ifpe.edu.br/recife/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +19,12 @@
 
         <ifpe:CarregaSalas/>
         <ifpe:CarregaTiposSala/>
+        <ifpe:CarregaAulas/>
+
+        <%-- data de hoje (yyyy-MM-dd) para saber quais salas têm reserva hoje --%>
+        <jsp:useBean id="agora" class="java.util.Date"/>
+        <fmt:setLocale value="pt_BR"/>
+        <fmt:formatDate value="${agora}" pattern="yyyy-MM-dd" var="hoje"/>
 
         <main class="page-container">
 
@@ -40,12 +47,20 @@
                 <c:otherwise>
                     <div class="catalog-grid">
                         <c:forEach var="sala" items="${pageScope.salas}">
+                            <c:set var="ocupadaHoje" value="false"/>
+                            <c:forEach var="aula" items="${pageScope.aulas}">
+                                <c:if test="${aula.sala.id eq sala.id and aula.dataIso eq hoje}">
+                                    <c:set var="ocupadaHoje" value="true"/>
+                                </c:if>
+                            </c:forEach>
+
                             <article class="catalog-card">
                                 <div class="catalog-visual catalog-visual-${sala.tipo}">
                                     <span>${sala.tipo.descricao}</span>
                                     <strong><c:out value="${fn:substring(sala.nome, 0, 2)}"/></strong>
                                 </div>
                                 <div class="catalog-body">
+                                    <span class="room-status ${ocupadaHoje ? 'room-status-busy' : ''}">${ocupadaHoje ? 'Reservada hoje' : 'Disponível'}</span>
                                     <h2><c:out value="${sala.nome}"/></h2>
                                     <p><c:out value="${sala.localizacao}"/></p>
                                     <div class="catalog-meta">
@@ -53,8 +68,10 @@
                                         <strong>${sala.capacidade} pessoas</strong>
                                     </div>
                                     <div class="catalog-actions">
-                                        <a class="btn btn-outline-primary"
-                                           href="Salas?id=${sala.id}&amp;operacao=editar">editar</a>
+                                        <c:if test="${not sala.fixa}">
+                                            <a class="btn btn-outline-primary"
+                                               href="Salas?id=${sala.id}&amp;operacao=editar">editar</a>
+                                        </c:if>
                                         <a class="btn btn-light text-danger"
                                            href="Salas?id=${sala.id}&amp;operacao=deletar"
                                            onclick="return confirm('Excluir esta sala?')">excluir</a>

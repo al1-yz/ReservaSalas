@@ -10,7 +10,7 @@
     <!-- Campo de SIAPE -->
     <div class="mb-3">
         <label for="cadSiapeInput" class="form-label">SIAPE</label>
-        <input type="number" class="form-control" name="siape" id="cadSiapeInput" min="1"
+        <input type="text" inputmode="numeric" pattern="[0-9]+" title="Digite apenas números" autocomplete="off" class="form-control" name="siape" id="cadSiapeInput"
                placeholder="Ex.: 1234567" value="<c:out value='${requestScope.cadSiape}'/>" required>
     </div>
 

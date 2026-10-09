@@ -8,6 +8,9 @@ public class Sala {
     private int capacidade;
     private TipoSala tipo;
 
+    // sala já existente no sistema: não pode ser editada (só excluída, se não tiver reservas)
+    private boolean fixa;
+
     public int getId() {
         return id;
     }
@@ -46,5 +49,13 @@ public class Sala {
 
     public void setTipo(TipoSala tipo) {
         this.tipo = tipo;
+    }
+
+    public boolean isFixa() {
+        return fixa;
+    }
+
+    public void setFixa(boolean fixa) {
+        this.fixa = fixa;
     }
 }

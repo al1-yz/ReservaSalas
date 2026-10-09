@@ -63,6 +63,7 @@
                         <span class="form-step">02</span>
                         <div class="form-section-content">
                             <h2>Defina o horário</h2>
+                            <p class="form-hint">Reservas das 6h às 22h, de hoje até 31/12 do ano atual.</p>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="dataInput" class="form-label">Data</label>
@@ -71,13 +72,13 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="horaInput" class="form-label">Hora inicial</label>
-                                    <input type="number" class="form-control" name="hora" id="horaInput" min="0" max="23"
-                                           placeholder="0 a 23"
+                                    <input type="number" class="form-control" name="hora" id="horaInput" min="6" max="21"
+                                           placeholder="6 a 21"
                                            value="${sessionScope.aula.hora ge 0 ? sessionScope.aula.hora : ''}" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="duracaoInput" class="form-label">Duração (h)</label>
-                                    <input type="number" class="form-control" name="duracao" id="duracaoInput" min="1" max="24"
+                                    <input type="number" class="form-control" name="duracao" id="duracaoInput" min="1" max="16"
                                            placeholder="horas"
                                            value="${sessionScope.aula.duracao ge 0 ? sessionScope.aula.duracao : ''}" required>
                                 </div>
@@ -149,7 +150,23 @@
             const horaInput = document.getElementById('horaInput');
             const duracaoInput = document.getElementById('duracaoInput');
 
+            // limites do formulário (quem decide de verdade é o servidor): data de hoje até 31/12 e término até as 22h
+            function dataIso(data) {
+                return data.getFullYear() + '-' + String(data.getMonth() + 1).padStart(2, '0') + '-' + String(data.getDate()).padStart(2, '0');
+            }
+
+            const hoje = new Date();
+            dataInput.min = dataIso(hoje);
+            dataInput.max = hoje.getFullYear() + '-12-31';
+
+            function atualizarLimiteDuracao() {
+                const hora = parseInt(horaInput.value, 10);
+                duracaoInput.max = isNaN(hora) ? 16 : Math.max(1, 22 - hora);
+            }
+
             function atualizarResumo() {
+                atualizarLimiteDuracao();
+
                 const opcao = salaInput.options[salaInput.selectedIndex];
                 const temSala = opcao.value !== '';
 

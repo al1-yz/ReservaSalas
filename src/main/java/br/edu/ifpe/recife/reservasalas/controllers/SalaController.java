@@ -37,6 +37,8 @@ public class SalaController extends HttpServlet {
 
             if (s == null) {
                 session.setAttribute("msg", "Sala não encontrada.");
+            } else if (s.isFixa()) {
+                session.setAttribute("msg", "A sala " + s.getNome() + " é fixa e não pode ser editada.");
             } else {
                 session.setAttribute("sala", s);
             }
@@ -112,6 +114,8 @@ public class SalaController extends HttpServlet {
 
             if (existente == null) {
                 session.setAttribute("msg", "Sala não encontrada.");
+            } else if (existente.isFixa()) {
+                session.setAttribute("msg", "A sala " + existente.getNome() + " é fixa e não pode ser editada.");
             } else {
                 s.setId(existente.getId());
                 SalaRepository.update(s);

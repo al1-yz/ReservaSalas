@@ -61,7 +61,7 @@ body {
     align-items: center;
     gap: 0.7rem;
     color: var(--ink);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 750;
     text-decoration: none;
 }
@@ -76,7 +76,7 @@ body {
     height: 2.2rem;
     place-items: center;
     color: white;
-    font-size: 0.62rem;
+    font-size: 0.82rem;
     font-weight: 800;
     border-radius: 0.7rem;
     background: linear-gradient(145deg, #3caf50, #237e33);
@@ -96,11 +96,11 @@ body {
 
 .main-nav a {
     display: flex;
-    min-height: 40px;
+    min-height: 44px;
     align-items: center;
     padding: 0 0.9rem;
     color: var(--muted);
-    font-size: 0.74rem;
+    font-size: 0.94rem;
     font-weight: 550;
     text-decoration: none;
     border-radius: 0.65rem;
@@ -121,7 +121,7 @@ body {
     display: none;
     margin-left: auto;
     color: var(--green-dark);
-    font-size: 0.72rem;
+    font-size: 0.92rem;
     font-weight: 650;
     background: var(--green-soft);
 }
@@ -192,12 +192,12 @@ body {
 
 .dropdown-menu .dropdown-header {
     color: var(--ink);
-    font-size: 0.78rem;
+    font-size: 0.98rem;
     font-weight: 700;
 }
 
 .dropdown-menu .dropdown-item {
-    font-size: 0.74rem;
+    font-size: 0.94rem;
     border-radius: 0.5rem;
 }
 
@@ -234,7 +234,7 @@ body {
 
 .page-intro > div > span {
     color: var(--green);
-    font-size: 0.62rem;
+    font-size: 0.82rem;
     font-weight: 800;
     letter-spacing: 0.14em;
 }
@@ -250,12 +250,12 @@ body {
 
 .btn-accent {
     display: inline-flex;
-    min-height: 44px;
+    min-height: 48px;
     align-items: center;
     justify-content: center;
     padding: 0 1.15rem;
     color: white;
-    font-size: 0.76rem;
+    font-size: 0.96rem;
     font-weight: 700;
     border-color: var(--green);
     border-radius: 0.7rem;
@@ -291,7 +291,7 @@ body {
 }
 
 .alert {
-    font-size: 0.8rem;
+    font-size: 1rem;
     border-radius: 0.75rem;
 }
 
@@ -317,7 +317,7 @@ body {
 
 .home-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 230px;
+    grid-template-columns: minmax(0, 1fr) 260px;
     gap: 1rem;
 }
 
@@ -351,7 +351,7 @@ body {
 }
 
 .reservation-date span {
-    font-size: 0.58rem;
+    font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -365,7 +365,7 @@ body {
 
 .reservation-date small {
     color: #5f8b66;
-    font-size: 0.62rem;
+    font-size: 0.82rem;
 }
 
 .reservation-main {
@@ -377,7 +377,7 @@ body {
     margin-bottom: 0.8rem;
     padding: 0.3rem 0.55rem;
     color: var(--green);
-    font-size: 0.55rem;
+    font-size: 0.75rem;
     font-weight: 750;
     border-radius: 2rem;
     background: var(--green-soft);
@@ -385,14 +385,14 @@ body {
 
 .reservation-main h2 {
     margin: 0;
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: 720;
 }
 
 .reservation-main > p {
     margin: 0.25rem 0 1.4rem;
     color: var(--muted);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 
 .reservation-details {
@@ -408,11 +408,11 @@ body {
 
 .reservation-details span {
     color: var(--muted);
-    font-size: 0.57rem;
+    font-size: 0.77rem;
 }
 
 .reservation-details strong {
-    font-size: 0.72rem;
+    font-size: 0.92rem;
 }
 
 .reservation-actions {
@@ -425,7 +425,7 @@ body {
 .reservation-actions .btn,
 .catalog-actions .btn,
 .equipment-actions .btn {
-    font-size: 0.65rem;
+    font-size: 0.85rem;
     border-radius: 0.55rem;
 }
 
@@ -458,7 +458,7 @@ body {
 
 .summary-heading > span {
     color: #a9bdc7;
-    font-size: 0.56rem;
+    font-size: 0.76rem;
     font-weight: 800;
     letter-spacing: 0.13em;
 }
@@ -477,7 +477,7 @@ body {
 .summary-stat strong {
     display: block;
     color: #8ee39c;
-    font-size: 1.7rem;
+    font-size: 1.85rem;
     line-height: 1;
 }
 
@@ -485,7 +485,7 @@ body {
     display: block;
     margin-top: 0.35rem;
     color: #aebcc3;
-    font-size: 0.62rem;
+    font-size: 0.82rem;
 }
 
 .summary-stat-availability {
@@ -506,7 +506,7 @@ body {
     min-height: 38px;
     padding: 0.6rem 0.8rem 0;
     color: white;
-    font-size: 0.66rem;
+    font-size: 0.86rem;
     font-weight: 700;
     text-align: left;
     text-decoration: none;
@@ -539,7 +539,7 @@ body {
     margin-bottom: 1rem;
     place-items: center;
     color: var(--green-dark);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: 800;
     border-radius: 0.8rem;
     background: var(--green-soft);
@@ -547,21 +547,21 @@ body {
 
 .empty-message h2 {
     margin-bottom: 1.2rem;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 /* ---------- formularios ---------- */
 
 .form-label {
     color: var(--muted);
-    font-size: 0.64rem;
+    font-size: 0.84rem;
     font-weight: 650;
 }
 
 .form-control,
 .form-select {
-    min-height: 43px;
-    font-size: 0.75rem;
+    min-height: 48px;
+    font-size: 0.95rem;
     border-color: var(--line);
     border-radius: 0.6rem;
     background-color: #fafbfc;
@@ -606,7 +606,7 @@ body {
     height: 2rem;
     place-items: center;
     color: var(--green-dark);
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     font-weight: 800;
     border-radius: 0.6rem;
     background: var(--green-soft);
@@ -615,7 +615,7 @@ body {
 .form-section-content h2,
 .equipment-fieldset legend {
     margin: 0 0 1rem;
-    font-size: 0.82rem;
+    font-size: 1.02rem;
     font-weight: 700;
 }
 
@@ -634,7 +634,7 @@ body {
 
 .equipment-fieldset legend small {
     color: var(--muted);
-    font-size: 0.62rem;
+    font-size: 0.82rem;
     font-weight: 400;
 }
 
@@ -653,7 +653,7 @@ body {
     margin: 0;
     padding: 0.4rem 0.5rem 0.4rem 0.75rem;
     color: var(--ink);
-    font-size: 0.67rem;
+    font-size: 0.87rem;
     font-weight: 400;
     border: 1px solid var(--line);
     border-radius: 0.6rem;
@@ -665,8 +665,8 @@ body {
 }
 
 .equipment-options input {
-    width: 54px;
-    min-height: 32px;
+    width: 66px;
+    min-height: 36px;
     flex: none;
     background: white;
 }
@@ -683,7 +683,7 @@ body {
 
 .summary-label {
     color: var(--muted);
-    font-size: 0.55rem;
+    font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.11em;
 }
@@ -705,7 +705,7 @@ body {
     height: 2.3rem;
     flex: none;
     place-items: center;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     font-weight: 800;
     text-transform: uppercase;
     border-radius: 0.6rem;
@@ -720,14 +720,14 @@ body {
 
 .summary-room strong {
     overflow: hidden;
-    font-size: 0.68rem;
+    font-size: 0.88rem;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .summary-room small {
     overflow: hidden;
-    font-size: 0.56rem;
+    font-size: 0.76rem;
     opacity: 0.75;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -761,7 +761,7 @@ body {
     justify-content: space-between;
     gap: 1rem;
     padding: 0.7rem 0;
-    font-size: 0.64rem;
+    font-size: 0.84rem;
     border-bottom: 1px solid var(--line);
 }
 
@@ -780,7 +780,7 @@ body {
     display: block;
     margin-top: 0.8rem;
     color: var(--muted);
-    font-size: 0.66rem;
+    font-size: 0.86rem;
     text-align: center;
     text-decoration: none;
 }
@@ -789,7 +789,29 @@ body {
     color: var(--ink);
 }
 
+.form-hint {
+    margin: -0.6rem 0 1rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
 /* ---------- catalogos: salas e equipamentos ---------- */
+
+.room-status {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+    padding: 0.3rem 0.65rem;
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 750;
+    border-radius: 2rem;
+    background: var(--green-soft);
+}
+
+.room-status-busy {
+    color: #9a5b12;
+    background: #fff1d7;
+}
 
 .catalog-grid {
     display: grid;
@@ -823,14 +845,14 @@ body {
 
 .catalog-visual span {
     padding: 0.3rem 0.5rem;
-    font-size: 0.52rem;
+    font-size: 0.72rem;
     font-weight: 700;
     border-radius: 2rem;
     background: rgba(255, 255, 255, 0.65);
 }
 
 .catalog-visual strong {
-    font-size: 2rem;
+    font-size: 2.2rem;
     text-transform: uppercase;
     opacity: 0.65;
 }
@@ -842,13 +864,13 @@ body {
 
 .catalog-body h2 {
     margin: 0;
-    font-size: 0.86rem;
+    font-size: 1.06rem;
 }
 
 .catalog-body > p {
     margin: 0.25rem 0 1rem;
     color: var(--muted);
-    font-size: 0.62rem;
+    font-size: 0.82rem;
 }
 
 .catalog-meta {
@@ -859,11 +881,11 @@ body {
 
 .catalog-meta span {
     color: var(--muted);
-    font-size: 0.55rem;
+    font-size: 0.75rem;
 }
 
 .catalog-meta strong {
-    font-size: 0.68rem;
+    font-size: 0.88rem;
 }
 
 .catalog-actions,
@@ -901,7 +923,7 @@ body {
     height: 2.7rem;
     place-items: center;
     color: var(--green-dark);
-    font-size: 0.62rem;
+    font-size: 0.82rem;
     font-weight: 800;
     text-transform: uppercase;
     border-radius: 0.7rem;
@@ -910,21 +932,21 @@ body {
 
 .equipment-name h2 {
     margin: 0;
-    font-size: 0.78rem;
+    font-size: 0.98rem;
 }
 
 .equipment-name p,
 .equipment-use {
     margin: 0.2rem 0 0;
     color: var(--muted);
-    font-size: 0.62rem;
+    font-size: 0.82rem;
 }
 
 .equipment-type {
     width: fit-content;
     padding: 0.3rem 0.5rem;
     color: var(--blue-dark);
-    font-size: 0.55rem;
+    font-size: 0.75rem;
     font-weight: 650;
     border-radius: 2rem;
     background: var(--blue-soft);
@@ -981,12 +1003,12 @@ body {
 .auth-brand .brand-symbol {
     width: 3rem;
     height: 3rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 .auth-brand h1 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: 760;
     letter-spacing: -0.03em;
 }
@@ -999,7 +1021,7 @@ body {
 .auth-switch {
     margin: 1.4rem 0 0;
     color: var(--muted);
-    font-size: 0.72rem;
+    font-size: 0.92rem;
     text-align: center;
 }
 

@@ -18,6 +18,7 @@ public class SalaRepository {
         s.setLocalizacao("Bloco A - 1º andar");
         s.setCapacidade(40);
         s.setTipo(TipoSala.SALA_DE_AULA);
+        s.setFixa(true);
         create(s);
 
         s = new Sala();
@@ -25,6 +26,7 @@ public class SalaRepository {
         s.setLocalizacao("Bloco A - 1º andar");
         s.setCapacidade(35);
         s.setTipo(TipoSala.SALA_DE_AULA);
+        s.setFixa(true);
         create(s);
 
         s = new Sala();
@@ -32,6 +34,7 @@ public class SalaRepository {
         s.setLocalizacao("Bloco B - térreo");
         s.setCapacidade(30);
         s.setTipo(TipoSala.LABORATORIO);
+        s.setFixa(true);
         create(s);
 
         s = new Sala();
@@ -39,6 +42,7 @@ public class SalaRepository {
         s.setLocalizacao("Bloco C");
         s.setCapacidade(120);
         s.setTipo(TipoSala.AUDITORIO);
+        s.setFixa(true);
         create(s);
     }
 

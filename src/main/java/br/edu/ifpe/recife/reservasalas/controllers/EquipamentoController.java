@@ -92,6 +92,13 @@ public class EquipamentoController extends HttpServlet {
             return;
         }
 
+        // os quatro campos são texto: precisam ter ao menos uma letra (não pode ser só número)
+        if (!temLetra(nome) || !temLetra(marca) || !temLetra(tipo) || !temLetra(utilidade)) {
+            session.setAttribute("msg", "Dados inválidos! Nome, marca, tipo e utilidade devem ser texto e não podem ser só números.");
+            response.sendRedirect("Equipamentos.jsp");
+            return;
+        }
+
         Equipamento e = new Equipamento();
         e.setNome(nome.trim());
         e.setMarca(marca.trim());
@@ -119,6 +126,15 @@ public class EquipamentoController extends HttpServlet {
 
         response.sendRedirect("Equipamentos.jsp");
 
+    }
+
+    private boolean temLetra(String texto) {
+        for (char c : texto.toCharArray()) {
+            if (Character.isLetter(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Equipamento lerEquipamento(String id) {

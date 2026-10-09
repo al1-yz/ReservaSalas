@@ -11,25 +11,25 @@
     <div class="mb-3">
         <label for="equipNomeInput" class="form-label">Nome</label>
         <input type="text" class="form-control" name="nome" id="equipNomeInput"
-               value="<c:out value='${sessionScope.equipamento.nome}'/>" required>
+               value="<c:out value='${sessionScope.equipamento.nome}'/>" pattern=".*[A-Za-zÀ-ÿ].*" title="Use texto: não pode ser só número" required>
     </div>
 
     <div class="mb-3">
         <label for="equipMarcaInput" class="form-label">Marca</label>
         <input type="text" class="form-control" name="marca" id="equipMarcaInput"
-               value="<c:out value='${sessionScope.equipamento.marca}'/>" required>
+               value="<c:out value='${sessionScope.equipamento.marca}'/>" pattern=".*[A-Za-zÀ-ÿ].*" title="Use texto: não pode ser só número" required>
     </div>
 
     <div class="mb-3">
         <label for="equipTipoInput" class="form-label">Tipo</label>
         <input type="text" class="form-control" name="tipo" id="equipTipoInput"
-               value="<c:out value='${sessionScope.equipamento.tipo}'/>" required>
+               value="<c:out value='${sessionScope.equipamento.tipo}'/>" pattern=".*[A-Za-zÀ-ÿ].*" title="Use texto: não pode ser só número" required>
     </div>
 
     <div class="mb-3">
         <label for="equipUtilidadeInput" class="form-label">Utilidade</label>
         <input type="text" class="form-control" name="utilidade" id="equipUtilidadeInput"
-               value="<c:out value='${sessionScope.equipamento.utilidade}'/>" required>
+               value="<c:out value='${sessionScope.equipamento.utilidade}'/>" pattern=".*[A-Za-zÀ-ÿ].*" title="Use texto: não pode ser só número" required>
     </div>
 
     <div class="d-grid gap-2">

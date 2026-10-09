@@ -10,6 +10,7 @@ import br.edu.ifpe.recife.reservasalas.model.repositories.SalaRepository;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,6 +25,10 @@ import jakarta.servlet.http.HttpSession;
  */
 @WebServlet(name = "AulaController", urlPatterns = {"/Aulas"})
 public class AulaController extends HttpServlet {
+
+    // horário de funcionamento: as reservas começam a partir das 6h e terminam até as 22h
+    private static final int HORA_ABERTURA = 6;
+    private static final int HORA_FECHAMENTO = 22;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -143,10 +148,15 @@ public class AulaController extends HttpServlet {
             erro = "Escolha uma sala válida.";
         } else if (aula.getData() == null) {
             erro = "Informe uma data válida.";
-        } else if (aula.getHora() < 0 || aula.getHora() > 23) {
-            erro = "A hora de início deve estar entre 0 e 23.";
-        } else if (aula.getDuracao() < 1 || aula.getDuracao() > 24 || aula.getHoraFim() > 24) {
-            erro = "A duração deve ser de pelo menos 1 hora e a reserva deve terminar até as 24h.";
+        } else if (aula.getHora() < HORA_ABERTURA || aula.getHora() >= HORA_FECHAMENTO) {
+            erro = "O horário de funcionamento é das " + HORA_ABERTURA + "h às " + HORA_FECHAMENTO
+                    + "h: a hora inicial deve estar entre " + HORA_ABERTURA + " e " + (HORA_FECHAMENTO - 1) + ".";
+        } else if (aula.getDuracao() < 1) {
+            erro = "Informe a duração da reserva em horas.";
+        } else if (aula.getHoraFim() > HORA_FECHAMENTO) {
+            erro = "A reserva deve terminar até as " + HORA_FECHAMENTO + "h. Reduza a duração ou comece mais cedo.";
+        } else if (erroDeData(aula) != null) {
+            erro = erroDeData(aula);
         } else if (quantidadeInvalida) {
             erro = "A quantidade de cada equipamento deve ser um número inteiro, zero ou maior.";
         } else {
@@ -185,6 +195,36 @@ public class AulaController extends HttpServlet {
 
         response.sendRedirect("indexProfessor.jsp");
 
+    }
+
+    // devolve o motivo de a data da reserva não ser aceita, ou null se está dentro do permitido
+    // (de hoje até 31/12 do ano atual; hoje só com hora inicial que ainda não passou)
+    private String erroDeData(Aula aula) {
+
+        Calendar agora = Calendar.getInstance();
+
+        Calendar hoje = Calendar.getInstance();
+        hoje.set(Calendar.HOUR_OF_DAY, 0);
+        hoje.set(Calendar.MINUTE, 0);
+        hoje.set(Calendar.SECOND, 0);
+        hoje.set(Calendar.MILLISECOND, 0);
+
+        Calendar reserva = Calendar.getInstance();
+        reserva.setTime(aula.getData());
+
+        if (reserva.get(Calendar.YEAR) > agora.get(Calendar.YEAR)) {
+            return "As reservas só podem ser feitas até 31/12 do ano atual (" + agora.get(Calendar.YEAR) + ").";
+        }
+
+        if (aula.getData().before(hoje.getTime())) {
+            return "Não é possível reservar uma data que já passou.";
+        }
+
+        if (aula.getData().equals(hoje.getTime()) && aula.getHora() <= agora.get(Calendar.HOUR_OF_DAY)) {
+            return "Essa hora já passou. Para reservar hoje, escolha uma hora inicial depois de agora.";
+        }
+
+        return null;
     }
 
     private Aula lerAula(String id) {
