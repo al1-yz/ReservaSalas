@@ -29,6 +29,6 @@
 
     <!-- Botão de Cadastrar -->
     <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-lg">Cadastrar</button>
+        <button type="submit" class="btn btn-accent">Cadastrar</button>
     </div>
 </form>

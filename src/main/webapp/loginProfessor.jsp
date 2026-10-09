@@ -15,51 +15,47 @@
     </head>
     <body>
 
-        <div class="container">
-            <div class="row justify-content-center mt-5">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-                    <!-- Cartão do Formulário -->
-                    <div class="card shadow border-0 rounded-3">
-                        <div class="card-body p-4 p-sm-5">
-                            <h3 class="card-title text-center mb-4 fw-bold text-primary">Reserva de Salas</h3>
+        <main class="auth-page">
+            <!-- Cartão do Formulário -->
+            <div class="auth-card">
+                <div class="auth-brand">
+                    <span class="brand-symbol">RS</span>
+                    <h1>Reserva de Salas</h1>
+                </div>
 
-                            <form method="post" action="ProfessorLogin">
-                                <input type="hidden" name="operacao" value="login"/>
+                <form method="post" action="ProfessorLogin">
+                    <input type="hidden" name="operacao" value="login"/>
 
-                                <!-- Campo de SIAPE -->
-                                <div class="mb-3">
-                                    <label for="siapeInput" class="form-label">SIAPE</label>
-                                    <input type="number" name="siape" class="form-control" id="siapeInput"
-                                           placeholder="Seu SIAPE" value="<c:out value='${requestScope.siapeLogin}'/>" required>
-                                </div>
-
-                                <!-- Campo de Senha -->
-                                <div class="mb-3">
-                                    <label for="passwordInput" class="form-label">Senha</label>
-                                    <input type="password" name="senha" class="form-control" id="passwordInput" placeholder="Sua senha" required>
-                                </div>
-
-                                <!-- Botão de Enviar -->
-                                <div class="d-grid gap-2 mt-4">
-                                    <button type="submit" class="btn btn-primary btn-lg">Acessar</button>
-                                </div>
-                            </form>
-
-                            <!-- Link de Cadastro -->
-                            <div class="text-center mt-4">
-                                <span class="text-muted small">Não tem uma conta?</span>
-                                <a href="#" class="text-decoration-none small fw-bold" data-bs-toggle="modal"
-                                   data-bs-target="#modalCadastro"> Cadastre-se</a>
-                            </div>
-                        </div>
+                    <!-- Campo de SIAPE -->
+                    <div class="mb-3">
+                        <label for="siapeInput" class="form-label">SIAPE</label>
+                        <input type="number" name="siape" class="form-control" id="siapeInput"
+                               placeholder="Seu SIAPE" value="<c:out value='${requestScope.siapeLogin}'/>" required>
                     </div>
 
-                    <c:if test="${not empty requestScope.msg and not requestScope.abrirCadastro}">
-                        <div class="alert alert-info mt-3"><c:out value="${requestScope.msg}"/></div>
-                    </c:if>
-                </div>
+                    <!-- Campo de Senha -->
+                    <div class="mb-3">
+                        <label for="passwordInput" class="form-label">Senha</label>
+                        <input type="password" name="senha" class="form-control" id="passwordInput" placeholder="Sua senha" required>
+                    </div>
+
+                    <!-- Botão de Enviar -->
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-accent">Acessar</button>
+                    </div>
+                </form>
+
+                <!-- Link de Cadastro -->
+                <p class="auth-switch">
+                    Não tem uma conta?
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalCadastro">Cadastre-se</a>
+                </p>
+
+                <c:if test="${not empty requestScope.msg and not requestScope.abrirCadastro}">
+                    <div class="alert alert-info" role="alert"><c:out value="${requestScope.msg}"/></div>
+                </c:if>
             </div>
-        </div>
+        </main>
 
         <!-- Modal -->
         <div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="modalCadastroLabel" aria-hidden="true">
